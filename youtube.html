@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Downloader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        /* Header menu styles */
+        nav {
+            width: 100%;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            animation: fadeIn 1s ease;
+        }
+
+        nav a:hover {
+            background-color: #45a049;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Add padding to the body to avoid content being hidden by the fixed header */
+        body {
+            padding-top: 60px; /* Adjust this value according to your header's height */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="youtube.html">Convert YouTube Video</a>
+        <a href="facebook.html">Convert Facebook Video</a>
+        <a href="instagram.html">Convert Instagram Video</a>
+    </nav>
+    <div class="container">
+        <h1>Video Downloader</h1>
+        <p>Welcome to our Video Downloader!</p>
+        <p>Get started by selecting a platform above to convert and download your favorite videos.</p>
+    </div>
+</body>
+</html>
