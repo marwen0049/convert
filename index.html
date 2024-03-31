@@ -7,60 +7,61 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
         }
 
         .container {
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            padding: 40px;
             text-align: center;
-            width: 90%;
             max-width: 800px;
             margin: 20px auto;
         }
 
         h1 {
             color: #333;
+            margin-bottom: 20px;
+            font-size: 32px;
         }
 
         p {
             color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
         }
 
-        /* Header menu styles */
         nav {
-            width: 100%;
-            background-color: #4CAF50;
-            color: #fff;
-            padding: 10px 0;
             text-align: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 999;
-            transition: background-color 0.3s ease;
+            margin-bottom: 30px;
         }
 
         nav a {
-            color: #fff;
+            color: #444;
             text-decoration: none;
             margin: 0 20px;
-            padding: 10px;
+            padding: 10px 20px;
             border-radius: 5px;
             transition: background-color 0.3s ease;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #f4f4f4;
+            border: 2px solid transparent;
         }
 
         nav a:hover {
-            background-color: #45a049;
-        }
-
-        /* Add padding to the body to avoid content being hidden by the fixed header */
-        body {
-            padding-top: 60px; /* Adjust this value according to your header's height */
+            background-color: #e4e4e4;
         }
 
         /* Slideshow styles */
@@ -99,38 +100,41 @@
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="youtube.html">Convert YouTube Video</a>
-        <a href="facebook.html">Convert Facebook Video</a>
-        <a href="instagram.html">Convert Instagram Video</a>
-    </nav>
-    
+    <header>
+        <h1>Video Downloader</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="youtube.html">Convert YouTube Video</a>
+            <a href="facebook.html">Convert Facebook Video</a>
+            <a href="instagram.html">Convert Instagram Video</a>
+        </nav>
+    </header>
+
     <!-- Facebook Section -->
     <div id="facebook" class="container">
-        <h1>Facebook Video Downloader</h1>
+        <h2>Facebook Video Downloader</h2>
+        <p>Download videos from Facebook easily!</p>
         <div class="slideshow-container">
-            <div class="text fade">Download videos from Facebook easily!</div>
+            <div class="text fade">Enter the Facebook video URL and choose the format to download.</div>
         </div>
-        <p>Enter the Facebook video URL and choose the format to download.</p>
     </div>
     
     <!-- YouTube Section -->
     <div id="youtube" class="container">
-        <h1>YouTube Video Downloader</h1>
+        <h2>YouTube Video Downloader</h2>
+        <p>Download videos from YouTube hassle-free!</p>
         <div class="slideshow-container">
-            <div class="text fade">Download videos from YouTube hassle-free!</div>
+            <div class="text fade">Paste the YouTube video URL and select the desired format to download.</div>
         </div>
-        <p>Paste the YouTube video URL and select the desired format to download.</p>
     </div>
     
     <!-- Instagram Section -->
     <div id="instagram" class="container">
-        <h1>Instagram Video Downloader</h1>
+        <h2>Instagram Video Downloader</h2>
+        <p>Grab videos from Instagram effortlessly!</p>
         <div class="slideshow-container">
-            <div class="text fade">Grab videos from Instagram effortlessly!</div>
+            <div class="text fade">Copy the Instagram video URL and choose the output format for downloading.</div>
         </div>
-        <p>Copy the Instagram video URL and choose the output format for downloading.</p>
     </div>
 
     <script>
@@ -146,7 +150,7 @@
             slideIndex++;
             if (slideIndex > slides.length) {slideIndex = 1}    
             slides[slideIndex-1].style.display = "block";  
-            setTimeout(showSlides, 2000); // Change image every 2 seconds
+            setTimeout(showSlides, 2000); // Change text every 2 seconds
         }
     </script>
 </body>
