@@ -8,13 +8,24 @@
         /* Styles omitted for brevity */
     </style>
     <script>
-        function toggleResolution() {
-            var format = document.getElementById("format").value;
+        function toggleInput() {
+            var videoUrlInput = document.getElementById("video-url");
+            var fileInput = document.getElementById("file");
+            var formatSelect = document.getElementById("format");
             var resolutionSelect = document.getElementById("resolution");
-            if (format === "mp3") {
-                resolutionSelect.disabled = true;
-            } else {
+            if (videoUrlInput.value !== "") {
+                fileInput.disabled = true;
+                formatSelect.disabled = false;
                 resolutionSelect.disabled = false;
+            } else if (fileInput.value !== "") {
+                videoUrlInput.disabled = true;
+                formatSelect.disabled = false;
+                resolutionSelect.disabled = false;
+            } else {
+                videoUrlInput.disabled = false;
+                fileInput.disabled = false;
+                formatSelect.disabled = true;
+                resolutionSelect.disabled = true;
             }
         }
     </script>
@@ -22,21 +33,21 @@
 <body>
     <div class="container">
         <h1>YouTube Converter</h1>
-        <form action="download.php" method="post" enctype="multipart/form-data" onsubmit="toggleResolution()">
+        <form action="download.php" method="post" enctype="multipart/form-data" onsubmit="toggleInput()">
             <label for="video-url">Enter YouTube Video URL:</label><br>
-            <input type="text" id="video-url" name="video-url" required><br>
+            <input type="text" id="video-url" name="video-url" onchange="toggleInput()" required><br>
+            <label for="file">Or Upload a Video:</label><br>
+            <input type="file" id="file" name="file" onchange="toggleInput()"><br><br>
             <label for="format">Select Output Format:</label><br>
-            <select id="format" name="format" onchange="toggleResolution()">
+            <select id="format" name="format" onchange="toggleInput()" disabled>
                 <option value="mp3">MP3</option>
                 <option value="mp4">MP4</option>
             </select><br>
             <label for="resolution">Select Resolution:</label><br>
-            <select id="resolution" name="resolution">
+            <select id="resolution" name="resolution" disabled>
                 <option value="720">HD 720p</option>
                 <option value="1080">Full HD 1080p</option>
-            </select><br>
-            <label for="file">Or Upload a Video:</label><br>
-            <input type="file" id="file" name="file"><br><br>
+            </select><br><br>
             <input type="submit" value="Convert and Download">
         </form>
     </div>
