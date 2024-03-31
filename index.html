@@ -22,7 +22,8 @@
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
             text-align: center;
-            width: 400px;
+            width: 90%;
+            max-width: 400px; /* Added max-width to make it mobile-friendly */
         }
 
         h1 {
@@ -67,16 +68,13 @@
             var resolutionSelect = document.getElementById("resolution");
             if (videoUrlInput.value !== "") {
                 fileInput.disabled = true;
-                formatSelect.disabled = false;
-                resolutionSelect.disabled = false;
+                resolutionSelect.disabled = formatSelect.value === "mp3"; // Disable resolution select if MP3 is selected
             } else if (fileInput.value !== "") {
                 videoUrlInput.disabled = true;
-                formatSelect.disabled = false;
-                resolutionSelect.disabled = false;
+                resolutionSelect.disabled = formatSelect.value === "mp3"; // Disable resolution select if MP3 is selected
             } else {
                 videoUrlInput.disabled = false;
                 fileInput.disabled = false;
-                formatSelect.disabled = true;
                 resolutionSelect.disabled = true;
             }
         }
@@ -91,7 +89,7 @@
             <label for="file">Or Upload a Video:</label><br>
             <input type="file" id="file" name="file" onchange="toggleInput()"><br><br>
             <label for="format">Select Output Format:</label><br>
-            <select id="format" name="format" onchange="toggleInput()" disabled>
+            <select id="format" name="format" onchange="toggleInput()">
                 <option value="mp3">MP3</option>
                 <option value="mp4">MP4</option>
             </select><br>
