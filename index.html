@@ -18,6 +18,10 @@
             color: #fff;
             padding: 20px 0;
             text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 9999;
         }
 
         .container {
@@ -27,10 +31,10 @@
             padding: 40px;
             text-align: center;
             max-width: 800px;
-            margin: 20px auto;
+            margin: 100px auto; /* Added margin to avoid content being hidden behind the header */
         }
 
-        h1 {
+        h2 {
             color: #333;
             margin-bottom: 20px;
             font-size: 28px;
