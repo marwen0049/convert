@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube to MP3 Converter</title>
+    <title>YouTube Converter</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -48,14 +48,18 @@
             border-radius: 4px;
         }
 
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
+        select, input[type="submit"] {
             padding: 10px 20px;
+            margin-bottom: 15px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
         }
 
         input[type="submit"]:hover {
@@ -65,11 +69,21 @@
 </head>
 <body>
     <div class="container">
-        <h1>YouTube to MP3 Converter</h1>
+        <h1>YouTube Converter</h1>
         <form action="download.php" method="post">
             <label for="video-url">Enter YouTube Video URL:</label><br>
-            <input type="text" id="video-url" name="video-url" required><br><br>
-            <input type="submit" value="Convert to MP3">
+            <input type="text" id="video-url" name="video-url" required><br>
+            <label for="format">Select Output Format:</label><br>
+            <select id="format" name="format">
+                <option value="mp3">MP3</option>
+                <option value="mp4">MP4</option>
+            </select><br>
+            <label for="resolution">Select Resolution:</label><br>
+            <select id="resolution" name="resolution">
+                <option value="720">HD 720p</option>
+                <option value="1080">Full HD 1080p</option>
+            </select><br><br>
+            <input type="submit" value="Convert and Download">
         </form>
     </div>
 </body>
