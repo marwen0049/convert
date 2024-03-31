@@ -11,9 +11,8 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
         }
 
         .container {
@@ -23,7 +22,8 @@
             padding: 20px;
             text-align: center;
             width: 90%;
-            max-width: 400px; /* Added max-width to make it mobile-friendly */
+            max-width: 400px;
+            margin-top: 20px;
         }
 
         h1 {
@@ -59,6 +59,22 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
+
+        /* Header menu styles */
+        nav {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+        }
     </style>
     <script>
         function toggleInput() {
@@ -81,6 +97,11 @@
     </script>
 </head>
 <body>
+    <nav>
+        <a href="#">Convert YouTube Video (Home)</a>
+        <a href="#">Convert Facebook Video</a>
+        <a href="#">Convert Instagram Video</a>
+    </nav>
     <div class="container">
         <h1>YouTube Converter</h1>
         <form action="download.php" method="post" enctype="multipart/form-data" onsubmit="toggleInput()">
@@ -100,6 +121,4 @@
             </select><br><br>
             <input type="submit" value="Convert and Download">
         </form>
-    </div>
-</body>
-</html>
+    </di
