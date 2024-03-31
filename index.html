@@ -59,15 +59,26 @@
             background-color: #45a049;
         }
     </style>
+    <script>
+        function toggleResolution() {
+            var format = document.getElementById("format").value;
+            var resolutionSelect = document.getElementById("resolution");
+            if (format === "mp3") {
+                resolutionSelect.disabled = true;
+            } else {
+                resolutionSelect.disabled = false;
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>YouTube Converter</h1>
-        <form action="download.php" method="post">
+        <form action="download.php" method="post" onsubmit="toggleResolution()">
             <label for="video-url">Enter YouTube Video URL:</label><br>
             <input type="text" id="video-url" name="video-url" required><br>
             <label for="format">Select Output Format:</label><br>
-            <select id="format" name="format">
+            <select id="format" name="format" onchange="toggleResolution()">
                 <option value="mp3">MP3</option>
                 <option value="mp4">MP4</option>
             </select><br>
