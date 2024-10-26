@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Downloader</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 0; /* Adjusted padding */
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 9999;
+        }
+         /* Header menu styles */
+        nav {
+            width: 100%;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #45a049;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px; /* Adjusted font size */
+        }
+
+        p {
+            color: #555;
+            font-size: 16px; /* Adjusted font size */
+            line-height: 1.6;
+            margin-bottom: 20px; /* Adjusted margin */
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 20px; /* Adjusted margin */
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+            background-color: #4CAF50;
+        }
+
+        nav a:hover {
+            background-color: #45A049;
+        }
+
+        /* Slideshow styles */
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+
+        .text {
+            color: #333;
+            font-size: 16px; /* Adjusted font size */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0.4;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="youtube.html"><i class="fab fa-youtube"></i> Convert YouTube</a>
+            <a href="facebook.html"><i class="fab fa-facebook"></i> Convert Facebook</a>
+            <a href="instagram.html"><i class="fab fa-instagram"></i> Convert Instagram</a>
+        </nav>
+    </header>
+
+    <!-- Facebook Section -->
+    <div id="facebook" class="container">
+        <h2><i class="fab fa-facebook"></i> Facebook Video Downloader</h2>
+        <p>Download videos from Facebook easily!</p>
+        <div class="slideshow-container">
+            <div class="text fade">Enter the Facebook video URL and choose the format to download.</div>
+        </div>
+    </div>
+    
+    <!-- YouTube Section -->
+    <div id="youtube" class="container">
+        <h2><i class="fab fa-youtube"></i> YouTube Video Downloader</h2>
+        <p>Download videos from YouTube hassle-free!</p>
+        <div class="slideshow-container">
+            <div class="text fade">Paste the YouTube video URL and select the desired format to download.</div>
+        </div>
+    </div>
+    
+    <!-- Instagram Section -->
+    <div id="instagram" class="container">
+        <h2><i class="fab fa-instagram"></i> Instagram Video Downloader</h2>
+        <p>Grab videos from Instagram effortlessly!</p>
+        <div class="slideshow-container">
+            <div class="text fade">Copy the Instagram video URL and choose the output format for downloading.</div>
+        </div>
+    </div>
+
+    <script>
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("text");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+            setTimeout(showSlides, 2000); // Change text every 2 seconds
+        }
+    </script>
+</body>
+</html>
