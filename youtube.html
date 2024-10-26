@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Converter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"], select, input[type="submit"], input[type="file"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Header menu styles */
+        nav {
+            width: 100%;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #45a049;
+        }
+
+        /* Add padding to the body to avoid content being hidden by the fixed header */
+        body {
+            padding-top: 60px; /* Adjust this value according to your header's height */
+        }
+    </style>
+    <script>
+        function toggleInput() {
+            var videoUrlInput = document.getElementById("video-url");
+            var fileInput = document.getElementById("file");
+            var formatSelect = document.getElementById("format");
+            var resolutionSelect = document.getElementById("resolution");
+            if (videoUrlInput.value !== "") {
+                fileInput.disabled = true;
+                resolutionSelect.disabled = formatSelect.value === "mp3"; // Disable resolution select if MP3 is selected
+            } else if (fileInput.value !== "") {
+                videoUrlInput.disabled = true;
+                resolutionSelect.disabled = formatSelect.value === "mp3"; // Disable resolution select if MP3 is selected
+            } else {
+                videoUrlInput.disabled = false;
+                fileInput.disabled = false;
+                resolutionSelect.disabled = true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <nav>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="youtube.html"><i class="fab fa-youtube"></i> Convert YouTube Video</a>
+        <a href="facebook.html"><i class="fab fa-facebook"></i> Convert Facebook Video</a>
+        <a href="instagram.html"><i class="fab fa-instagram"></i> Convert Instagram Video</a>
+    </nav>
+    <div class="container">
+        <h1>YouTube Converter</h1>
+        <form action="download.php" method="post" enctype="multipart/form-data" onsubmit="toggleInput()">
+            <label for="video-url">Enter YouTube Video URL:</label><br>
+            <input type="text" id="video-url" name="video-url" onchange="toggleInput()" required><br>
+            <label for="file">Or Upload a Video:</label><br>
+            <input type="file" id="file" name="file" onchange="toggleInput()"><br><br>
+            <label for="format">Select Output Format:</label><br>
+            <select id="format" name="format" onchange="toggleInput()">
+                <option value="mp3">MP3</option>
+                <option value="mp4">MP4</option>
+            </select><br>
+            <label for="resolution">Select Resolution:</label><br>
+            <select id="resolution" name="resolution" disabled>
+                <option value="720">HD 720p</option>
+                <option value="1080">Full HD 1080p</option>
+            </select><br><br>
+            <input type="submit" value="Convert and Download">
+        </form>
+    </div>
+</body>
+</html>
