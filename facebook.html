@@ -103,12 +103,8 @@
     </script>
 </head>
 <body>
-    <nav>
-        <a href="index.html"><i class="fas fa-home"></i> Home</a>
-        <a href="youtube.html"><i class="fab fa-youtube"></i> Convert YouTube</a>
-        <a href="facebook.html"><i class="fab fa-facebook"></i> Convert Facebook</a>
-        <a href="instagram.html"><i class="fab fa-instagram"></i> Convert Instagram</a>
-    </nav>
+     <!-- Header -->
+    <div id="header"></div>
     <div class="container">
         <h1>Facebook Video Downloader</h1>
         <form action="download.php" method="post" onsubmit="toggleInput()">
@@ -127,5 +123,19 @@
             <input type="submit" value="Download">
         </form>
     </div>
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- JavaScript to load header and footer -->
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+
 </body>
 </html>
