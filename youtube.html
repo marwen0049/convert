@@ -5,14 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YouTube Converter</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
-        }
-
         .container {
             background-color: #fff;
             border-radius: 8px;
@@ -58,36 +52,8 @@
             background-color: #45a049;
         }
 
-        /* Header menu styles */
-        nav {
-            width: 100%;
-            background-color: #4CAF50;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 999;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 20px;
-            padding: 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        nav a:hover {
-            background-color: #45a049;
-        }
-
-        /* Add padding to the body to avoid content being hidden by the fixed header */
-        body {
-            padding-top: 60px; /* Adjust this value according to your header's height */
-        }
+        
+        
     </style>
     <script>
         function toggleInput() {
@@ -110,12 +76,7 @@
     </script>
 </head>
 <body>
-    <nav>
-        <a href="index.html"><i class="fas fa-home"></i> Home</a>
-        <a href="youtube.html"><i class="fab fa-youtube"></i> Convert YouTube Video</a>
-        <a href="facebook.html"><i class="fab fa-facebook"></i> Convert Facebook Video</a>
-        <a href="instagram.html"><i class="fab fa-instagram"></i> Convert Instagram Video</a>
-    </nav>
+    <div id="header"></div>
     <div class="container">
         <h1>YouTube Converter</h1>
         <form action="download.php" method="post" enctype="multipart/form-data" onsubmit="toggleInput()">
@@ -136,5 +97,8 @@
             <input type="submit" value="Convert and Download">
         </form>
     </div>
+    <!-- Footer Section -->
+    <div id="footer"></div>
+
 </body>
 </html>
