@@ -4,60 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram Video Downloader</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <script>
-        // Function to load header and footer dynamically
-        function loadComponent(url, elementId) {
-            fetch(url)
-                .then(response => response.text())
-                .then(data => document.getElementById(elementId).innerHTML = data);
-        }
-    </script>
 </head>
-<body onload="loadComponent('header.html', 'header'); loadComponent('footer.html', 'footer');">
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="youtube.html">YouTube</a>
+            <a href="facebook.html">Facebook</a>
+            <a href="instagram.html">Instagram</a>
+        </nav>
+    </header>
 
-    <!-- Header Section -->
-    <div id="header"></div>
-
-    <!-- Main Content Section -->
     <div class="container">
         <h1>Instagram Video Downloader</h1>
-        <form action="download.php" method="post" onsubmit="toggleInput()">
-            <label for="video-url">Enter Video URL:</label><br>
-            <input type="text" id="video-url" name="video-url" onchange="toggleInput()" required><br>
+        <form action="download.php" method="post">
+            <label for="video-url">Enter Video URL:</label>
+            <input type="text" id="video-url" name="video-url" required>
             
-            <label for="format">Select Output Format:</label><br>
-            <select id="format" name="format" onchange="toggleInput()">
+            <label for="format">Select Output Format:</label>
+            <select id="format" name="format">
                 <option value="mp3">MP3</option>
                 <option value="mp4">MP4</option>
-            </select><br>
+            </select>
 
-            <label for="resolution">Select Resolution:</label><br>
-            <select id="resolution" name="resolution" disabled>
+            <label for="resolution">Select Resolution:</label>
+            <select id="resolution" name="resolution">
                 <option value="720">HD 720p</option>
                 <option value="1080">Full HD 1080p</option>
-            </select><br><br>
+            </select>
             
             <input type="submit" value="Download">
         </form>
     </div>
 
-    <!-- Footer Section -->
-    <div id="footer"></div>
-
-    <!-- Script for enabling/disabling the resolution select based on format selection -->
-    <script>
-        function toggleInput() {
-            var videoUrlInput = document.getElementById("video-url");
-            var formatSelect = document.getElementById("format");
-            var resolutionSelect = document.getElementById("resolution");
-            if (videoUrlInput.value !== "") {
-                resolutionSelect.disabled = formatSelect.value === "mp3"; // Disable resolution if MP3 is selected
-            } else {
-                resolutionSelect.disabled = true;
-            }
-        }
-    </script>
+    <footer>
+        <p>&copy; 2023 Social Media Downloader</p>
+    </footer>
 </body>
 </html>
