@@ -1,117 +1,28 @@
-/* style.css */
-
-/* Global styles */
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-    margin: 0;
-    padding: 0;
-    padding-top: 80px; /* Prevent content from hiding behind the fixed header */
-}
-
-/* Header */
-header {
-    background-color: rgba(0, 150, 136, 0.85);
-    backdrop-filter: blur(10px);
-    color: #fff;
-    padding: 20px 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    text-align: center;
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 20px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 18px;
-    transition: all 0.3s ease;
-}
-
-nav a:hover {
-    background-color: #388E3C;
-}
-
-/* Main Container */
-.container {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
-    margin: 20px auto;
-}
-
-h1 {
-    color: #333;
-}
-
-/* Form Styles */
-form {
-    margin-top: 20px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
-}
-
-input[type="text"], select, input[type="submit"] {
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-input[type="submit"]:hover {
-    background-color: #45a049;
-}
-
-/* Footer */
-footer {
-    background-color: rgba(0, 150, 136, 0.85);
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-    margin-top: 40px;
-}
-
-footer p {
-    margin: 5px 0;
-    font-size: 16px;
-}
-
-footer a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 10px;
-    font-size: 18px;
-    transition: color 0.3s ease;
-}
-
-footer a:hover {
-    color: #e0f7fa;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    nav a {
-        font-size: 16px;
-    }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Video Downloader</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="youtube.html">YouTube</a>
+            <a href="facebook.html">Facebook</a>
+            <a href="instagram.html">Instagram</a>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <h1>Home Page</h1>
+        <p>Welcome to the Social Media Video Downloader.</p>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 Social Media Downloader</p>
+    </footer>
+</body>
+</html>
