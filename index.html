@@ -1,70 +1,117 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Media Video Converter</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+/* style.css */
 
-    <!-- Header -->
-    <div id="header"></div>
-    
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>Convert and Download Social Media Videos Instantly</h1>
-        <p>Fast, secure, and easy way to download videos from YouTube, Facebook, and Instagram!</p>
-        <a href="#facebook" class="cta-button">Get Started</a>
-    </div>
+/* Global styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    margin: 0;
+    padding: 0;
+    padding-top: 80px; /* Prevent content from hiding behind the fixed header */
+}
 
-    <!-- Facebook Video Downloader Section -->
-    <div id="facebook" class="container">
-        <div class="social-icon"><i class="fab fa-facebook"></i></div>
-        <h2>Facebook Video Downloader</h2>
-        <p>Download videos from Facebook effortlessly!</p>
-        <div class="input-box">
-            <input type="text" class="url-input" placeholder="Enter Facebook video URL here">
-            <button class="download-button">Download</button>
-        </div>
-    </div>
+/* Header */
+header {
+    background-color: rgba(0, 150, 136, 0.85);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    text-align: center;
+}
 
-    <!-- YouTube Video Downloader Section -->
-    <div id="youtube" class="container">
-        <div class="social-icon"><i class="fab fa-youtube"></i></div>
-        <h2>YouTube Video Downloader</h2>
-        <p>Convert and download videos from YouTube in a snap!</p>
-        <div class="input-box">
-            <input type="text" class="url-input" placeholder="Enter YouTube video URL here">
-            <button class="download-button">Download</button>
-        </div>
-    </div>
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 20px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
 
-    <!-- Instagram Video Downloader Section -->
-    <div id="instagram" class="container">
-        <div class="social-icon"><i class="fab fa-instagram"></i></div>
-        <h2>Instagram Video Downloader</h2>
-        <p>Seamlessly grab videos from Instagram!</p>
-        <div class="input-box">
-            <input type="text" class="url-input" placeholder="Enter Instagram video URL here">
-            <button class="download-button">Download</button>
-        </div>
-    </div>
+nav a:hover {
+    background-color: #388E3C;
+}
 
-    <!-- Footer -->
-    <div id="footer"></div>
+/* Main Container */
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+}
 
-    <!-- JavaScript to load header and footer -->
-    <script>
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('header').innerHTML = data);
+h1 {
+    color: #333;
+}
 
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('footer').innerHTML = data);
-    </script>
+/* Form Styles */
+form {
+    margin-top: 20px;
+}
 
-</body>
-</html>
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"], select, input[type="submit"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Footer */
+footer {
+    background-color: rgba(0, 150, 136, 0.85);
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #e0f7fa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav a {
+        font-size: 16px;
+    }
+}
