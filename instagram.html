@@ -4,42 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram Video Downloader</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            padding-top: 30px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"], select, input[type="submit"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        
+    </style>
+    <script>
+        function toggleInput() {
+            var videoUrlInput = document.getElementById("video-url");
+            var formatSelect = document.getElementById("format");
+            var resolutionSelect = document.getElementById("resolution");
+            if (videoUrlInput.value !== "") {
+                resolutionSelect.disabled = formatSelect.value === "mp3"; // Disable resolution select if MP3 is selected
+            } else {
+                resolutionSelect.disabled = true;
+            }
+        }
+    </script>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="youtube.html">YouTube</a>
-            <a href="facebook.html">Facebook</a>
-            <a href="instagram.html">Instagram</a>
-        </nav>
-    </header>
-
+     <!-- Header -->
+    <div id="header"></div>
     <div class="container">
-        <h1>Instagram Video Downloader</h1>
-        <form action="download.php" method="post">
-            <label for="video-url">Enter Video URL:</label>
-            <input type="text" id="video-url" name="video-url" required>
-            
-            <label for="format">Select Output Format:</label>
-            <select id="format" name="format">
+        <h1>Facebook Video Downloader</h1>
+        <form action="download.php" method="post" onsubmit="toggleInput()">
+            <label for="video-url">Enter Facebook Video URL:</label><br>
+            <input type="text" id="video-url" name="video-url" onchange="toggleInput()" required><br><br>
+            <label for="format">Select Output Format:</label><br>
+            <select id="format" name="format" onchange="toggleInput()">
                 <option value="mp3">MP3</option>
                 <option value="mp4">MP4</option>
-            </select>
-
-            <label for="resolution">Select Resolution:</label>
-            <select id="resolution" name="resolution">
+            </select><br>
+            <label for="resolution">Select Resolution:</label><br>
+            <select id="resolution" name="resolution" disabled>
                 <option value="720">HD 720p</option>
                 <option value="1080">Full HD 1080p</option>
-            </select>
-            
+            </select><br><br>
             <input type="submit" value="Download">
         </form>
     </div>
+    <!-- Footer -->
+    <div id="footer"></div>
 
-    <footer>
-        <p>&copy; 2023 Social Media Downloader</p>
-    </footer>
+    <!-- JavaScript to load header and footer -->
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+
 </body>
 </html>
