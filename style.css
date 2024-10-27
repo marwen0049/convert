@@ -1,55 +1,18 @@
-/* style.css */
-/* Global styles */
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-    margin: 0;
-    padding: 0;
-}
-
-/* Header and Navigation */
-header {
-    background-color: rgba(0, 150, 136, 0.85);
-    backdrop-filter: blur(10px);
-    color: #fff;
-    padding: 20px 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    text-align: center;
-}
-
-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 20px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 18px;
-    transition: all 0.3s ease;
-}
-
-nav a:hover {
-    background-color: #388E3C;
-}
-
 /* Hero Section */
 .hero {
     padding: 120px 20px 40px;
     text-align: center;
+    background-color: #f5f7fa;
 }
 
 .hero h1 {
     font-size: 36px;
     color: #333;
-    margin: 0;
 }
 
 .hero p {
     font-size: 20px;
     color: #555;
-    margin: 20px 0;
 }
 
 .cta-button {
@@ -63,72 +26,6 @@ nav a:hover {
 }
 
 .cta-button:hover {
-    background-color: #388E3C;
-}
-
-/* Social Media Section Containers */
-.container {
-    background: #ffffff;
-    border-radius: 10px;
-    padding: 30px;
-    width: 90%;
-    max-width: 400px;
-    margin: 40px auto;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.container:hover {
-    transform: scale(1.05);
-}
-
-h2 {
-    font-size: 26px;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-p {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 15px;
-    line-height: 1.6;
-}
-
-.social-icon {
-    font-size: 40px;
-    color: #4CAF50;
-    margin-bottom: 15px;
-}
-
-/* Input Box and Download Button */
-.input-box {
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0;
-}
-
-.url-input {
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.download-button {
-    padding: 12px;
-    font-size: 18px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.download-button:hover {
     background-color: #388E3C;
 }
 
@@ -156,15 +53,4 @@ footer a {
 
 footer a:hover {
     color: #e0f7fa;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 28px;
-    }
-
-    nav a {
-        font-size: 16px;
-    }
 }
