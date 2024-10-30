@@ -9,7 +9,975 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
   <style>
+    /* Body and General Styling */<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navigation Menu with Tabs, Search, and Sidebar</title>
+  
+  <!-- Link to Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <style>
     /* Body and General Styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      background-color: #FFFFFF;
+      color: #333;
+    }
+
+    /* Sidebar Styling */
+    .sidebar {
+      width: 70px;
+      background-color: #FFFFFF;
+      height: 100vh;
+      position: fixed;
+      top: 35px;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+    }
+
+    .sidebar a {
+      color: #333;
+      padding: 15px 0;
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      font-size: 24px;
+      transition: background 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      background-color: #e0e0e0;
+      border-radius: 20%;
+      width: 50px;
+      height: 50px;
+    }
+
+    /* Main Content Area Styling */
+    .main-content {
+      margin-left: 70px;
+      flex: 1;
+      padding: 20px;
+    }
+
+    /* Top Bar Styling */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navigation {
+      display: flex;
+    }
+
+    .nav-item {
+      background-color: #e0e0e0;
+      color: #333;
+      padding: 10px 20px;
+      margin: 0 5px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-item:hover {
+      background-color: #dcdcdc;
+    }
+
+    .nav-item.active {
+      background-color: #21A298;
+      color: white;
+    }
+
+    /* Search Bar Styling */
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background-color: #e0e0e0;
+      border-radius: 20px;
+      padding: 5px 10px;
+    }
+
+    .search-bar input {
+      border: none;
+      background: none;
+      outline: none;
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    /* Content and Video Card Styling */
+    .content {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .category-title {
+      font-size: 24px;
+      color: #333;
+      margin: 20px 0 10px;
+    }
+
+    .video-grid {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .video-card {
+      background: #FFF;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 22%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .video-card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    
+    .card-actions {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+    }
+
+    .btn-icon {
+      padding: 6px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      color: white;
+    }
+
+    .favorite-btn {
+      background-color: #21A298;
+    }
+
+    .share-btn {
+      background-color: #388E3C;
+    }
+
+    .platform-section {
+      display: none;
+    }
+
+    .platform-section.active {
+      display: block;
+    }
+
+
+
+/* Style pour la barre de filtre des catégories */
+.category-filter {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+    background-color: #ffffff;
+    border-bottom: 0px solid #ddd;
+}
+
+.category-button {
+    padding: 10px 15px;
+    margin: 0 5px;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #333;
+}
+
+.category-button.active {
+    background-color: #000;
+    color: white;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar Menu with Icons -->
+  <div class="sidebar">
+    <a href="#home" title="Home"><i class="fas fa-home"></i></a>
+    <a href="#dashboard" title="Dashboard"><i class="fas fa-tachometer-alt"></i></a>
+    <a href="#analytics" title="Analytics"><i class="fas fa-chart-line"></i></a>
+    <a href="#settings" title="Settings"><i class="fas fa-cog"></i></a>
+    <a href="#logout" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+
+    <!-- Top Bar with Navigation and Search -->
+    <div class="top-bar">
+      <div class="navigation">
+        <button class="nav-item active" onclick="filterContent('all')">All</button>
+        <button class="nav-item" onclick="filterContent('facebook')">Facebook</button>
+        <button class="nav-item" onclick="filterContent('instagram')">Instagram</button>
+        <button class="nav-item" onclick="filterContent('twitter')">Twitter</button>
+        <button class="nav-item" onclick="filterContent('tiktok')">TikTok</button>
+      </div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search...">
+      </div>
+    </div>
+<!-- Barre de filtre des catégories -->
+<div class="category-filter">
+    <button class="category-button active" onclick="filterCategory('all')">All</button>
+    <button class="category-button" onclick="filterCategory('music')">Music</button>
+    <button class="category-button" onclick="filterCategory('playlists')">Playlists</button>
+    <button class="category-button" onclick="filterCategory('mixes')">Mixes</button>
+    <button class="category-button" onclick="filterCategory('live')">Live</button>
+    <!-- Ajoutez plus de catégories si nécessaire -->
+</div>
+
+
+    <!-- Content Sections with Categories -->
+    <div class="content">
+      <!-- Facebook Section -->
+      <div class="platform-section active" id="facebook">
+        <h2>Facebook Highlights & Collections</h2>
+
+        <!-- Categories -->
+        <div class="category-title">Top Trend</div>
+        <div class="video-grid">
+          <!-- Sample video card repeated 4 times per category -->
+           <div class="video-card" data-category="music">
+        <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+        <h3>Music Video 1</h3>
+        <div class="card-actions">
+            <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+            <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+        </div>
+    </div>
+       <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+        <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+         <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+        
+          <!-- Repeat the above .video-card 3 more times for each row of 4 videos -->
+        </div>
+
+        <div class="category-title">Shorts</div>
+        <div class="video-grid">
+          <!-- Repeat the .video-card 4 times per category as in the example above -->
+         <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+      <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+        <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+         <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="category-title">Breaking News</div>
+        <div class="video-grid">
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+     <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+          <!-- Repeat .video-card 4 times -->
+        </div>
+
+        <div class="category-title">Recently Viewed</div>
+        <div class="video-grid">
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+          <!-- Repeat .video-card 4 times -->
+        </div>
+      </div>
+
+      <!-- Repeat this structure for each social media section (Instagram, Twitter, TikTok) with their respective content -->
+    </div>
+
+
+
+
+
+ <!-- instagram Section -->
+      <div class="platform-section active" id="instagram">
+        <h2>Instagram Highlights & Collections</h2>
+
+        <!-- Categories -->
+        <div class="category-title">Top Trend</div>
+        <div class="video-grid">
+          <!-- Sample video card repeated 4 times per category -->
+          <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+       <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+        <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+         <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+        
+          <!-- Repeat the above .video-card 3 more times for each row of 4 videos -->
+        </div>
+
+        <div class="category-title">Shorts</div>
+        <div class="video-grid">
+          <!-- Repeat the .video-card 4 times per category as in the example above -->
+         <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+      <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+        <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+         <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="category-title">Breaking News</div>
+        <div class="video-grid">
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+     <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+          <!-- Repeat .video-card 4 times -->
+        </div>
+
+        <div class="category-title">Recently Viewed</div>
+        <div class="video-grid">
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+          <!-- Repeat .video-card 4 times -->
+        </div>
+      </div>
+
+
+      <!-- Repeat this structure for each social media section (Instagram, Twitter, TikTok) with their respective content -->
+    
+
+
+<!-- twittwer Section -->
+      <div class="platform-section active" id="tiktok">
+        <h2>tiktok Highlights & Collections</h2>
+
+        <!-- Categories -->
+        <div class="category-title">Top Trend</div>
+        <div class="video-grid">
+          <!-- Sample video card repeated 4 times per category -->
+          <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+       <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+        <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+         <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+        
+          <!-- Repeat the above .video-card 3 more times for each row of 4 videos -->
+        </div>
+
+        <div class="category-title">Shorts</div>
+        <div class="video-grid">
+          <!-- Repeat the .video-card 4 times per category as in the example above -->
+         <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+      <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+        <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+         <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="category-title">Breaking News</div>
+        <div class="video-grid">
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+     <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+          <!-- Repeat .video-card 4 times -->
+        </div>
+
+        <div class="category-title">Recently Viewed</div>
+        <div class="video-grid">
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+          <!-- Repeat .video-card 4 times -->
+        </div>
+      </div>
+
+      <!-- Repeat this structure for each social media section (Instagram, Twitter, TikTok) with their respective content -->
+   
+
+
+<!-- tiktok Section -->
+      <div class="platform-section active" id="twitter">
+        <h2>twitter Highlights & Collections</h2>
+
+        <!-- Categories -->
+        <div class="category-title">Top Trend</div>
+        <div class="video-grid">
+          <!-- Sample video card repeated 4 times per category -->
+          <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+       <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+        <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+         <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+        
+          <!-- Repeat the above .video-card 3 more times for each row of 4 videos -->
+        </div>
+
+        <div class="category-title">Shorts</div>
+        <div class="video-grid">
+          <!-- Repeat the .video-card 4 times per category as in the example above -->
+         <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+      <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+        <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+         <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="category-title">Breaking News</div>
+        <div class="video-grid">
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+     <div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+          <!-- Repeat .video-card 4 times -->
+        </div>
+
+        <div class="category-title">Recently Viewed</div>
+        <div class="video-grid">
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+<div class="video-card">
+            <img src="path/to/thumbnail1.jpg" alt="Thumbnail 1">
+            <h3>Video Title</h3>
+            <div class="card-actions">
+              <button class="btn-icon favorite-btn"><i class="fas fa-heart"></i></button>
+              <button class="btn-icon share-btn"><i class="fas fa-share"></i></button>
+            </div>
+          </div>
+
+          <!-- Repeat .video-card 4 times -->
+        </div>
+      </div>
+
+      <!-- Repeat this structure for each social media section (Instagram, Twitter, TikTok) with their respective content -->
+    </div>
+
+</div>
+
+  </div>
+</div>
+
+  <script>
+    function filterContent(category) {
+      const sections = document.querySelectorAll('.platform-section');
+      sections.forEach(section => {
+        if (category === 'all' || section.id === category) {
+          section.classList.add('active');
+        } else {
+          section.classList.remove('active');
+        }
+      });
+
+      const tabs = document.querySelectorAll('.nav-item');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      document.querySelector(`.nav-item[onclick="filterContent('${category}')"]`).classList.add('active');
+    }
+  </script>
+
+ <script>
+    function filterCategory(category) {
+    // Sélectionne toutes les cartes vidéo
+    const allVideos = document.querySelectorAll('.video-card');
+
+    // Montre ou cache les cartes en fonction de la catégorie sélectionnée
+    allVideos.forEach(video => {
+        if (category === 'all' || video.dataset.category === category) {
+            video.style.display = 'block';
+        } else {
+            video.style.display = 'none';
+        }
+    });
+
+    // Met à jour le bouton actif
+    document.querySelectorAll('.category-button').forEach(button => {
+        button.classList.toggle('active', button.textContent.toLowerCase() === category);
+    });
+}
+
+  </script>
+
+
+
+
+
+</body>
+</html>
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
